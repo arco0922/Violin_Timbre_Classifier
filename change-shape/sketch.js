@@ -22,7 +22,7 @@ function setup() {
 	params = JSON.parse(sessionStorage.getItem('jsn_params'));
 	if (params==null) {
 		params = [30,0,0,1,0,0,
-			      21,0.38,0.85,6,0,0,
+			      13,0.24,0.54,5,0,0,
 			      23,0.5,1,6,0,0.24,
 				  17,0.45,0.87,6,0.96,1];
 	}
