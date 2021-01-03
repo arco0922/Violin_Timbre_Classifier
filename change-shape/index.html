@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>Violin_Timbre_Classifier</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/addons/p5.sound.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meyda@5.0.8/dist/web/meyda.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+    <style type="text/css">
+      body{
+        text-align: center;
+      }
+      #next{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #exp{
+        font-size: 22px;
+        margin-bottom: 0px;
+      }
+      #wrapper{
+        width:800px;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .sound1 {
+        position:absolute;
+        width: 200px;
+        height: 35px;
+      }
+      .sound2 {
+        position:absolute;
+        width: 200px; 
+        height:35px;
+      }
+      .sound3 {
+        position:absolute;
+        width: 200px;
+        height: 35px;
+      }
+      .sound4 {
+        position:absolute;
+        width: 200px; 
+        height:35px;
+      }
+	  </style>
+    <script src="sketch.js"></script>	
+  </head>
+  <body>
+    <h1>Violin Timbre Classifier (Shape-Setting)</h1>
+    <p id='exp'>以下の4つの音1~4を聴きながら，スライドバーを調整して，<br>それぞれの音に「しっくりくる」と感じる図形に図形を変形させてください.<br>
+    勿論，そのままでも構いません．</p>
+    <div id='wrapper'>
+      <audio
+        class = "sound1"
+        controls
+        loop = true
+        src="./sound1.wav">
+        Your browser does not support the
+        <code>audio</code> element.
+      </audio>
+      <audio
+        class = "sound2"
+        controls
+        loop = true
+        src="./sound2.wav">
+        Your browser does not support the
+        <code>audio</code> element.
+      </audio>
+      <audio
+        class = "sound3"
+        controls
+        loop = true
+        src="./sound3.wav">
+        Your browser does not support the
+        <code>audio</code> element.
+      </audio>
+      <audio
+        class = "sound4"
+        controls
+        loop = true
+        src="./sound4.wav">
+        Your browser does not support the
+        <code>audio</code> element.
+      </audio>
+    </div>
+    <button type="button" onclick="OnButtonClick();" id="next"><font size=5 > &ensp; 設定を保存して練習へ戻る  &ensp;  </font></button>
+    <br><br><br>
+  </body>
+</html>

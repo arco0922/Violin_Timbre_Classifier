@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>Violin_Timbre_Classifier</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/addons/p5.sound.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meyda@5.0.8/dist/web/meyda.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+    <style type="text/css">
+      body{
+        text-align: center;
+      }
+      #next{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #result{
+        font-size: 22px;
+      }
+	  </style>
+    <script src="sketch.js"></script>	
+  </head>
+  <body>
+    <h1>Violin Timbre Classifier</h1>
+    <p id='result'>Wait...</p>
+    <div id='wrapper'></div>
+    <br>
+    <br>
+    <button type="button" onclick="OnButtonClick();" id="next"><font size=5 > &ensp; 目標図形を変更したい場合  &ensp;  </font></button>
+  </body>
+</html>
