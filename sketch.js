@@ -157,7 +157,7 @@ function getMode() {
         }
       }
       //console.log(count);
-      plotProb(ema_prob,0,1,100,100,800,300);
+      //plotProb(ema_prob,0,1,100,100,800,300);
     }
     getMode(); //ここで再帰的に呼ぶことで、処理が繰り返される。
   });
