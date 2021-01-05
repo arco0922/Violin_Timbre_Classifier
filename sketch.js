@@ -3,7 +3,7 @@ var mic;
 var modeClassifier;
 var s_ema,h_ema,p_ema,r_ema;
 var ema_prob;
-const EMA_N = 20;
+const EMA_N = 15;
 const EMA_ALPHA = 2.0/(EMA_N+1);
 
 var params;
