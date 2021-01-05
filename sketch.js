@@ -1,10 +1,10 @@
 var audioContext; 
 var mic;
 var modeClassifier;
-var hist;
-var HISTNUM = 20;
+var s_ema,h_ema,p_ema,r_ema;
 var ema_prob;
-var EMA_ALPHA = 0.9;
+const EMA_N = 20;
+const EMA_ALPHA = 2.0/(EMA_N+1);
 
 var params;
 
@@ -51,7 +51,7 @@ function setup() {
 
   if (params==null) {
     params = [30,0,0,1,0,0,
-              13,0.24,0.54,5,0,0,
+              21,0.38,0.85,6,0,0,
               23,0.5,1,6,0,0.24,
               17,0.45,0.87,6,0.96,1];
   }
@@ -82,7 +82,12 @@ function setup() {
   audioContext = getAudioContext();
   mic = new p5.AudioIn();
   mic.start(startClassify);
-  hist = new Array(HISTNUM).fill(3);
+  
+  s_ema = 0;
+  h_ema = 0;
+  p_ema = 0;
+  r_ema = 1.0;
+
   ema_prob = [0,0,0,1.0];
 
   onMicDataCall([FEATURE_NAME_RMS], show)
@@ -102,13 +107,9 @@ function modelLoaded() {
 }
 
 function getMode() {
-  modeClassifier.getMode(function(err, mode) {
-    if (mode!=null) {
+  modeClassifier.getMode(function(err, res) {
+    if (res!=null) {
       select('#result').html('マイクから1m程度離れて，A線の開放弦を弾いて下さい．<br>良い音が出ていると，フィードバック図形が目標図形と同じになります．');     
-      ema_prob.fill(0);
-      for (let i=0; i<HISTNUM; i++){
-        ema_prob[hist[i]]+=pow(EMA_ALPHA,HISTNUM-1-i)*(1-EMA_ALPHA)/(1-pow(EMA_ALPHA,HISTNUM));
-      } 
       background(250);
       mixfreq(xfreq0,xfreq1,xfreq2,xfreq3,ema_prob,xmixedfreq);
       mixfreq(yfreq0,yfreq1,yfreq2,yfreq3,ema_prob,ymixedfreq);
@@ -135,12 +136,28 @@ function getMode() {
         fill(255,0,0);
         text('No Sound Detected',0,0,width,height);
       }
-      else {        
-        hist.push(mode);
-        hist.splice(0,1);
+      else {
+        if (res.mode==1) {
+          s_ema = calc_ema(0,s_ema);
+          h_ema = calc_ema(1,h_ema);
+          p_ema = calc_ema(0,p_ema);
+          r_ema = calc_ema(0,r_ema);
+        } else {
+          s_ema = calc_ema(res.s,s_ema);
+          h_ema = calc_ema(res.h,h_ema);
+          p_ema = calc_ema(res.p,p_ema);
+          r_ema = calc_ema(res.r,r_ema);
+        }     
+        var sumprob = s_ema+h_ema+p_ema+r_ema;
+        if (sumprob>0) {
+          ema_prob[0] = s_ema/sumprob;
+          ema_prob[1] = h_ema/sumprob;
+          ema_prob[2] = p_ema/sumprob;
+          ema_prob[3] = r_ema/sumprob;
+        }
       }
       //console.log(count);
-      //plotProb(count,0,HISTNUM,100,100,800,300);
+      plotProb(ema_prob,0,1,100,100,800,300);
     }
     getMode(); //ここで再帰的に呼ぶことで、処理が繰り返される。
   });
@@ -186,7 +203,7 @@ class ModeClassifier {
     this.model = model;
     this.audioContext = audioContext;
     this.stream = stream;
-    this.mode = null;
+    this.res = null;
     this.ready = callCallback(this.loadModel(model), callback);
   }
 
@@ -235,20 +252,24 @@ class ModeClassifier {
         const normalized = tf.div(zeromean, framestd);
         const input = normalized.reshape([1, 1024]);
         const activation = this.model.predict([input]).reshape([4]);
+        const s = activation.dataSync()[0]; //確率最大になるindex
+        const h = activation.dataSync()[1];
+        const p = activation.dataSync()[2];
+        const r = activation.dataSync()[3];
         const mode = activation.argMax().dataSync()[0]; //確率最大になるindex
-        this.mode = mode;
+        this.res = {'s':s,'h':h,'p':p,'r':r,'mode':mode};
       });
     });
   }
 
-  async getMode(callback) { //そのフレームでのthis.frequencyを非同期で取得
+  async getMode(callback) {
     await this.ready;
     await tf.nextFrame();
-    const { mode } = this; //this.modeをgetしているのと同義
+    const { res } = this; //this.resをgetしているのと同義
     if (callback) {
-      callback(undefined, mode);
+      callback(undefined, res);
     }
-    return mode;
+    return res;
   }
 
   static resample(audioBuffer, onComplete) { //入力のaudioBufferをリサンプリング
@@ -456,7 +477,10 @@ function show(features){  //callback function
     cur_rms = features[FEATURE_NAME_RMS];
 }
 
+function calc_ema(new_data,ema_data) {
+    return ema_data*(1-EMA_ALPHA) + new_data*EMA_ALPHA;
+}
+
 function OnButtonClick() {
-  console.log("Hello");
   window.location.href = './change-shape';
 }
