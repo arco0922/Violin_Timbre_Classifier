@@ -234,29 +234,29 @@ function draw() {
 	text("ツノの長さ",c1_x+square_width/2+margin_width-w_offsetslider,c1_y-marginslider*2+20+offsetslider);
 	text("ランダムの度合い",c1_x+square_width/2+margin_width-w_offsetslider,c1_y-marginslider*1+20+offsetslider);
 	text("ランダムのさせ方",c1_x+square_width/2+margin_width-w_offsetslider,c1_y+20+offsetslider);
-	text("ツノの先端の鋭さ",c1_x+square_width/2+margin_width-w_offsetslider,c1_y+marginslider*1+20+offsetslider);
-	text("ツノの付け根の鋭さ",c1_x+square_width/2+margin_width-w_offsetslider,c1_y+marginslider*2+20+offsetslider);
+	text("ツノの先端の丸さ",c1_x+square_width/2+margin_width-w_offsetslider,c1_y+marginslider*1+20+offsetslider);
+	text("ツノの付け根の丸さ",c1_x+square_width/2+margin_width-w_offsetslider,c1_y+marginslider*2+20+offsetslider);
 	
 	text("ツノの本数",c2_x+square_width/2+margin_width-w_offsetslider,c2_y-marginslider*3+20+offsetslider);
 	text("ツノの長さ",c2_x+square_width/2+margin_width-w_offsetslider,c2_y-marginslider*2+20+offsetslider);
 	text("ランダムの度合い",c2_x+square_width/2+margin_width-w_offsetslider,c2_y-marginslider*1+20+offsetslider);
 	text("ランダムのさせ方",c2_x+square_width/2+margin_width-w_offsetslider,c2_y+20+offsetslider);
-	text("ツノの先端の鋭さ",c2_x+square_width/2+margin_width-w_offsetslider,c2_y+marginslider*1+20+offsetslider);
-	text("ツノの付け根の鋭さ",c2_x+square_width/2+margin_width-w_offsetslider,c2_y+marginslider*2+20+offsetslider);
+	text("ツノの先端の丸さ",c2_x+square_width/2+margin_width-w_offsetslider,c2_y+marginslider*1+20+offsetslider);
+	text("ツノの付け根の丸さ",c2_x+square_width/2+margin_width-w_offsetslider,c2_y+marginslider*2+20+offsetslider);
 	
 	text("ツノの本数",c3_x+square_width/2+margin_width-w_offsetslider,c3_y-marginslider*3+20+offsetslider);
 	text("ツノの長さ",c3_x+square_width/2+margin_width-w_offsetslider,c3_y-marginslider*2+20+offsetslider);
 	text("ランダムの度合い",c3_x+square_width/2+margin_width-w_offsetslider,c3_y-marginslider*1+20+offsetslider);
 	text("ランダムのさせ方",c3_x+square_width/2+margin_width-w_offsetslider,c3_y+20+offsetslider);
-	text("ツノの先端の鋭さ",c3_x+square_width/2+margin_width-w_offsetslider,c3_y+marginslider*1+20+offsetslider);
-	text("ツノの付け根の鋭さ",c3_x+square_width/2+margin_width-w_offsetslider,c3_y+marginslider*2+20+offsetslider);
+	text("ツノの先端の丸さ",c3_x+square_width/2+margin_width-w_offsetslider,c3_y+marginslider*1+20+offsetslider);
+	text("ツノの付け根の丸さ",c3_x+square_width/2+margin_width-w_offsetslider,c3_y+marginslider*2+20+offsetslider);
 	
 	text("ツノの本数",c4_x+square_width/2+margin_width-w_offsetslider,c4_y-marginslider*3+20+offsetslider);
 	text("ツノの長さ",c4_x+square_width/2+margin_width-w_offsetslider,c4_y-marginslider*2+20+offsetslider);
 	text("ランダムの度合い",c4_x+square_width/2+margin_width-w_offsetslider,c4_y-marginslider*1+20+offsetslider);
 	text("ランダムのさせ方",c4_x+square_width/2+margin_width-w_offsetslider,c4_y+20+offsetslider);
-	text("ツノの先端の鋭さ",c4_x+square_width/2+margin_width-w_offsetslider,c4_y+marginslider*1+20+offsetslider);
-	text("ツノの付け根の鋭さ",c4_x+square_width/2+margin_width-w_offsetslider,c4_y+marginslider*2+20+offsetslider);
+	text("ツノの先端の丸さ",c4_x+square_width/2+margin_width-w_offsetslider,c4_y+marginslider*1+20+offsetslider);
+	text("ツノの付け根の丸さ",c4_x+square_width/2+margin_width-w_offsetslider,c4_y+marginslider*2+20+offsetslider);
 
 	textStyle(BOLD);
 	textAlign("right");
