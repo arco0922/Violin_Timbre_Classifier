@@ -2,7 +2,7 @@
 
 音を図形で可視化するインターフェース
 
-![ページはこちら](https://arco0922.github.io/Violin_Timbre_Classifier/)
+[ページはこちら](https://arco0922.github.io/Violin_Timbre_Classifier/)
 
 マイクに音を入力すると音色に応じて図形が変化します(ただし、ヴァイオリンのA線の音で学習しているので、442Hz程度の音でないとうまくいきません)
 
